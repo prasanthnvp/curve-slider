@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curved Slider</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="slider-wrapper">
+        <div class="swiper curved-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/football/400/500" alt="Football" />
+                        <div class="card-info">
+                            <h3>Champions League</h3>
+                            <p class="card-meta">Semi-Final · 21:00</p>
+                            <p class="card-location">Madrid</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/concert/400/500" alt="Concert" />
+                        <div class="card-info">
+                            <h3>Katy Perry</h3>
+                            <p class="card-meta">Pop Festival · 22:00</p>
+                            <p class="card-location">London</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/street1/400/500" alt="Street Dance" />
+                        <div class="card-info">
+                            <h3>Street Festival</h3>
+                            <p class="card-meta">Dance Battle · 18:00</p>
+                            <p class="card-location">Barcelona</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/fire1/400/500" alt="Fire Show" />
+                        <div class="card-info">
+                            <h3>Fire Festival</h3>
+                            <p class="card-meta">Night Show · 23:00</p>
+                            <p class="card-location">Valencia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/beach1/400/500" alt="Beach Sports" />
+                        <div class="card-info">
+                            <h3>Beach Volleyball</h3>
+                            <p class="card-meta">Tournament · 14:00</p>
+                            <p class="card-location">Rio</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/djset1/400/500" alt="DJ Set" />
+                        <div class="card-info">
+                            <h3>Electronic Night</h3>
+                            <p class="card-meta">DJ Set · 00:00</p>
+                            <p class="card-location">Berlin</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/surf1/400/500" alt="Surfing" />
+                        <div class="card-info">
+                            <h3>Surf Championship</h3>
+                            <p class="card-meta">Finals · 10:00</p>
+                            <p class="card-location">Hawaii</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/skate1/400/500" alt="Skateboarding" />
+                        <div class="card-info">
+                            <h3>Skate Park Jam</h3>
+                            <p class="card-meta">Open Session · 16:00</p>
+                            <p class="card-location">Los Angeles</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/mountain1/400/500" alt="Mountain" />
+                        <div class="card-info">
+                            <h3>Mountain Trail</h3>
+                            <p class="card-meta">Hiking · 08:00</p>
+                            <p class="card-location">Zurich</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/art1/400/500" alt="Art Gallery" />
+                        <div class="card-info">
+                            <h3>Modern Art Expo</h3>
+                            <p class="card-meta">Gallery · 11:00</p>
+                            <p class="card-location">Paris</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/food1/400/500" alt="Food Festival" />
+                        <div class="card-info">
+                            <h3>Street Food Fest</h3>
+                            <p class="card-meta">Tasting Tour · 12:00</p>
+                            <p class="card-location">Tokyo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/astro1/400/500" alt="Stargazing" />
+                        <div class="card-info">
+                            <h3>Stargazing Night</h3>
+                            <p class="card-meta">Observatory · 21:00</p>
+                            <p class="card-location">Atacama</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button class="nav-btn nav-prev" id="navPrev" aria-label="Previous slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <button class="nav-btn nav-next" id="navNext" aria-label="Next slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+
+        <!-- Radius Control -->
+        <div class="radius-control">
+            <label for="radiusSlider">Arc Angle</label>
+            <input type="range" id="radiusSlider" min="0" max="90" value="0" step="1" />
+            <span id="radiusValue">0°</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
