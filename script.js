@@ -15,7 +15,7 @@
     /** Selector for the element inside each slide to apply arc transform (the card). */
     cardSelector: ".card",
     /** Number of full clone sets (cloneSets × originalCount slides total; we start in middle). */
-    cloneSets: 4,
+    cloneSets: 10,
     /** Radius mapping: 0% = effectively flat (large R), 100% = tight curve (small R). */
     radiusAtPercent: (percent) => {
       if (percent === 0) return 10000;
@@ -171,6 +171,11 @@
       swiper.slideTo(targetIndex, 0, false);
       applyFerrisTransforms(swiper);
     }
+
+    // Ensure autoplay restarts if enabled
+    if (swiper.params.autoplay && swiper.params.autoplay.enabled) {
+      swiper.autoplay.start();
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -187,7 +192,7 @@
     mousewheel: true,
     initialSlide: initialSlideIndex,
     autoplay: {
-      delay: 2000,
+      delay: 1000,
       disableOnInteraction: false,
     },
 
