@@ -47,9 +47,10 @@
   if (!sliderEl) return;
 
   const radiusFromAttr = sliderEl.getAttribute("data-radius");
-  const initialPercent = radiusFromAttr !== null && radiusFromAttr !== ""
-    ? Math.min(100, Math.max(0, parseInt(radiusFromAttr, 10) || 30))
-    : 30;
+  const initialPercent =
+    radiusFromAttr !== null && radiusFromAttr !== ""
+      ? Math.min(100, Math.max(0, parseInt(radiusFromAttr, 10) || 30))
+      : 30;
   state.arcPercent = initialPercent;
   state.radius = CONFIG.radiusAtPercent(state.arcPercent);
 
@@ -83,7 +84,9 @@
   }
 
   /** Index of first “real” content (we start here or in next set). */
-  const initialSlideIndex = Math.floor(state.originalSlidesCount * (CONFIG.cloneSets / 2));
+  const initialSlideIndex = Math.floor(
+    state.originalSlidesCount * (CONFIG.cloneSets / 2),
+  );
 
   // ---------------------------------------------------------------------------
   // Arc / ferris wheel transform (R, x → y; scale/opacity/zIndex)
@@ -91,7 +94,8 @@
   function applyFerrisTransforms(swiper, overrideTranslate = null) {
     const { radius } = state;
     const slides = swiper.slides;
-    const currentTranslate = overrideTranslate !== null ? overrideTranslate : swiper.translate;
+    const currentTranslate =
+      overrideTranslate !== null ? overrideTranslate : swiper.translate;
     const wrapperCenter = -currentTranslate + swiper.width / 2;
 
     const isFlat = state.arcPercent === 0;
@@ -182,6 +186,10 @@
     watchSlidesProgress: true,
     mousewheel: true,
     initialSlide: initialSlideIndex,
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+    },
 
     on: {
       init(s) {
@@ -210,12 +218,14 @@
   // ---------------------------------------------------------------------------
   // Events (nav; optional radius input — in WordPress often omitted)
   // ---------------------------------------------------------------------------
-  if (navPrev) navPrev.addEventListener("click", () => {
-    if (state.allowNav) swiper.slidePrev();
-  });
-  if (navNext) navNext.addEventListener("click", () => {
-    if (state.allowNav) swiper.slideNext();
-  });
+  if (navPrev)
+    navPrev.addEventListener("click", () => {
+      if (state.allowNav) swiper.slidePrev();
+    });
+  if (navNext)
+    navNext.addEventListener("click", () => {
+      if (state.allowNav) swiper.slideNext();
+    });
 
   if (arcSlider && arcDisplay) {
     arcSlider.addEventListener("input", (e) => {
