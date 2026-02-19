@@ -13,7 +13,7 @@
 <body>
 
     <div class="slider-wrapper">
-        <div class="swiper curved-slider">
+        <div class="swiper curved-slider" data-radius="60">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="card">
@@ -152,9 +152,9 @@
 
         <!-- Radius Control -->
         <div class="radius-control">
-            <label for="radiusSlider">Arc Angle</label>
-            <input type="range" id="radiusSlider" min="0" max="90" value="0" step="1" />
-            <span id="radiusValue">0°</span>
+            <label for="radiusSlider">Arc %</label>
+            <input type="range" id="radiusSlider" min="0" max="100" value="30" step="1" />
+            <span id="radiusValue">30%</span>
         </div>
     </div>
 
