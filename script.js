@@ -38,6 +38,8 @@
     /** True while Swiper is animating (so we use getTranslate() in the loop). */
     isTransitioning: false,
     allowNav: true,
+    /** Cached card element per slide (filled in init) to avoid querySelector in hot path. */
+    cachedCards: null,
   };
 
   // ---------------------------------------------------------------------------
@@ -90,23 +92,25 @@
 
   // ---------------------------------------------------------------------------
   // Arc / ferris wheel transform (R, x → y; scale/opacity/zIndex)
+  // Uses cached card refs and only updates slides in visible band for performance.
   // ---------------------------------------------------------------------------
   function applyFerrisTransforms(swiper, overrideTranslate = null) {
-    const { radius } = state;
+    const { radius, cachedCards } = state;
     const slides = swiper.slides;
+    if (!cachedCards || cachedCards.length !== slides.length) return;
+
     const currentTranslate =
       overrideTranslate !== null ? overrideTranslate : swiper.translate;
     const wrapperCenter = -currentTranslate + swiper.width / 2;
+    const visibleMargin = swiper.width / 2 + 600;
 
     const isFlat = state.arcPercent === 0;
 
     for (let i = 0; i < slides.length; i++) {
       const slide = slides[i];
-      const target = slide.querySelector(CONFIG.cardSelector) || slide;
-      target.style.transitionDuration = "0ms";
+      const target = cachedCards[i];
 
       if (isFlat) {
-        // Radius 0: all slides in one plane (straight horizontal line)
         target.style.transform = "translate3d(0px, 0px, 0px) scale(1)";
         target.style.opacity = 1;
         slide.style.zIndex = 100;
@@ -116,11 +120,16 @@
       const slideWidth = slide.offsetWidth;
       const slideCenter = slide.swiperSlideOffset + slideWidth / 2;
       const dx = slideCenter - wrapperCenter;
+
+      if (Math.abs(dx) > visibleMargin) {
+        target.style.transform = `translate3d(0px, ${radius}px, 0px) scale(0.82)`;
+        target.style.opacity = 0.35;
+        slide.style.zIndex = 0;
+        continue;
+      }
+
       const dxClamped = Math.max(-radius, Math.min(radius, dx));
-
-      // Arc: y = R - sqrt(R² - x²); center stays at y=0
       const y = radius - Math.sqrt(radius * radius - dxClamped * dxClamped);
-
       const t = Math.abs(dxClamped) / radius;
       const scale = 1.0 - t * 0.2;
       const opacity = 1 - t * 0.5;
@@ -200,6 +209,12 @@
       init(s) {
         if (arcSlider) arcSlider.value = state.arcPercent;
         if (arcDisplay) arcDisplay.textContent = `${state.arcPercent}%`;
+        state.cachedCards = s.slides.map(
+          (slide) => slide.querySelector(CONFIG.cardSelector) || slide,
+        );
+        state.cachedCards.forEach((card) => {
+          card.style.transitionDuration = "0ms";
+        });
         requestAnimationFrame(() => applyFerrisTransforms(s));
       },
 
@@ -213,9 +228,9 @@
       },
 
       transitionEnd(s) {
-        state.allowNav = true;
         stopTransitionLoop(s);
         maybeJumpToRealZone(s);
+        state.allowNav = true;
       },
     },
   });
