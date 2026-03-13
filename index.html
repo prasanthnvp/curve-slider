@@ -13,7 +13,15 @@
 <body>
 
     <div class="slider-wrapper">
-        <div class="swiper curved-slider" data-radius="60">
+        <div class="swiper curved-slider"
+             data-arc-angle="15"
+             data-loop="true"
+             data-autoplay="true"
+             data-autoplay-delay="3000"
+             data-continuous="true"
+             data-continuous-speed="80"
+             data-show-controls="true"
+             data-show-nav="true">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="card">
@@ -150,11 +158,21 @@
             </svg>
         </button>
 
-        <!-- Radius Control -->
-        <div class="radius-control">
-            <label for="radiusSlider">Arc %</label>
-            <input type="range" id="radiusSlider" min="0" max="100" value="30" step="1" />
-            <span id="radiusValue">30%</span>
+        <!-- On-screen controls (WordPress: data-show-controls, data-show-nav) -->
+        <button type="button" class="controls-toggle-btn" id="showControlsBtn" aria-label="Show controls" style="display: none;">Controls</button>
+        <div class="curved-slider-controls" id="curvedSliderControls">
+            <div class="control-row">
+                <label for="arcAngleSlider">Arc angle</label>
+                <input type="range" id="arcAngleSlider" min="0" max="30" value="15" step="1" />
+                <span id="arcAngleValue">15°</span>
+            </div>
+            <div class="control-row control-checks">
+                <label><input type="checkbox" id="loopCheckbox" /> Infinite loop</label>
+                <label><input type="checkbox" id="autoplayCheckbox" /> Autoplay</label>
+                <label><input type="checkbox" id="continuousCheckbox" /> Continuous scroll (when autoplay on)</label>
+                <label><input type="checkbox" id="showControlsCheckbox" /> Show controls</label>
+                <label><input type="checkbox" id="showNavCheckbox" /> Show nav buttons</label>
+            </div>
         </div>
     </div>
 
